@@ -33,15 +33,14 @@ def tile_index_for_point(lat, lon):
     frac_lat = lat - tile_lat
     col = int(frac_lon * 1200.)
     row = int(frac_lat * 1200.)
-    if row == 0:
-        row = 1199
+    row = 1200 - row
+    if row == 1200:
+        row = 0
         tile_lat -= 1
     tile_x = col / POINTS_IN_TILE
     x = col - tile_x * POINTS_IN_TILE
     tile_y = row / POINTS_IN_TILE
     y = row - tile_y * POINTS_IN_TILE
-    tile_y = TILE_PARTS_N - tile_y - 1
-    y = POINTS_IN_TILE - y - 1
     return (tile_lat, tile_lon, tile_y * TILE_PARTS_N + tile_x), (x, y)
 
 
@@ -62,5 +61,7 @@ def get_elevations(latlons, db_path):
     return elevations
 
 if __name__ == '__main__':
-    db_path = '/home/w/tmp/dem_tiles'
-    print get_elevations([(39.7781889474084, 2.82159449205255)], db_path)
+    # db_path = '/home/w/tmp/dem_tiles'
+    # print get_elevations([(39.7781889474084, 2.82159449205255)], db_path)
+    cell = 1. / 1200
+    print tile_index_for_point(35 + cell * .49, 50)
