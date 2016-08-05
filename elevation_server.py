@@ -46,7 +46,6 @@ def read_points(fd, content_length):
 
 
 def process_request(environ, start_response):
-    print environ
     if environ['PATH_INFO'] != '/' or environ['REQUEST_METHOD'] != 'POST':
         raise HttpError(STATUS_NOT_FOUND, 'Not found')
     points = read_points(environ['wsgi.input'], environ['CONTENT_LENGTH'])
