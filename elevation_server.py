@@ -57,7 +57,7 @@ def process_request(environ, start_response):
     status = '200 OK'
     response_headers = [('Access-Control-Allow-Origin', '*')]
     start_response(status, response_headers)
-    elevations = [str(e) if e is not None else 'NULL' for e in elevations]
+    elevations = ['%.2f' % e if e is not None else 'NULL' for e in elevations]
     return ['\n'.join(map(str, elevations))]
 
 
