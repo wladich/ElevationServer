@@ -30,7 +30,10 @@ def read_points(fd, content_length):
         if len(s) > MAX_INPUT_SIZE:
             raise HttpError(STATUS_TOO_LARGE, 'Request too large')
     points = []
-    for line in s.splitlines():
+    lines = s.splitlines()
+    if len(lines) > MAX_INPUT_POINTS:
+        raise HttpError(STATUS_TOO_LARGE, 'Request too large')
+    for line in lines:
         if not line:
             continue
         point = line.split()
