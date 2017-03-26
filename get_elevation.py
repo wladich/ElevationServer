@@ -98,10 +98,10 @@ def get_elevations(latlons, db_path):
         for tile_ind, (x, y) in bilinear_indexes:
             if tile_ind != cur_tile_index:
                 tile = storage.get_tile(*tile_ind)
-                if tile is None:
-                    elevations.append(None)
-                    break
                 cur_tile_index = tile_ind
+            if tile is None:
+                elevations.append(None)
+                break
             bilinear_values.append(tile[x + y * POINTS_IN_TILE])
         else:
             # print bilinear_values
