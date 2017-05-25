@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name elevation.server.com;
+    access_log /var/log/nginx/elevation_access.log;
+    error_log /var/log/nginx/elevation_error.log warn;
+
+    include uwsgi_params;
+    location / {
+        uwsgi_pass unix:/var/run/uwsgi/app/elevation/socket;
+        expires 1d;
+    }
+    uwsgi_param ELEVATIONS_DB_PATH /var/www/elevation/data/dem_tiles;
+
+    more_clear_headers Access-Control-Allow-Origin;
+    more_set_headers 'Access-Control-Allow-Origin: *';
+
+}
