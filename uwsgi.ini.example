@@ -1,0 +1,16 @@
+[uwsgi]
+plugins = 0:python
+uid = www-data
+gid = nogroup
+chown-socket=www-data
+
+; our working dir
+project_dir = /var/www/elevation/server
+; chdir to it (just for fun)
+chdir = %(project_dir)
+set = DOCUMENT_ROOT=%(project_dir)
+module = elevation_server:application
+cheaper = 1
+threads=10
+processes = 4
+master = 1
