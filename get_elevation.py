@@ -102,7 +102,11 @@ def get_elevations(latlons, db_path):
             if tile is None:
                 elevations.append(None)
                 break
-            bilinear_values.append(tile[x + y * POINTS_IN_TILE])
+            value = tile[x + y * POINTS_IN_TILE]
+            if value == -32768:
+                elevations.append(None)
+                break
+            bilinear_values.append(value)
         else:
             # print bilinear_values
             elevation = (bilinear_values[0] * (1 - bilinear_offset[0]) * (1 - bilinear_offset[1]) +
