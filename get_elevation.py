@@ -78,7 +78,7 @@ def tile_index_for_point(lat, lon):
         ((tile_lat2, tile_lon2, tile_y2 * TILE_PARTS_N + tile_x2), (x2, y2)),
     ]
     dx = frac_lon * 1200 - col
-    dy = (1 - frac_lat) * 1200 - row
+    dy = 1200 - frac_lat * 1200 - row
     if dy == 1200:
         dy = 0
     assert 0 <= dx <= 1, dx
