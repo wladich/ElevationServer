@@ -71,6 +71,8 @@ def tile_index_for_point(lat, lon):
     if tile_y2 == TILE_PARTS_N:
         tile_y2 = 0
         tile_lat2 -= 1
+    tile_lon = (tile_lon + 180) % 360 - 180
+    tile_lon2 = (tile_lon2 + 180) % 360 - 180
     bilinear_indexes = [
         ((tile_lat, tile_lon, tile_y * TILE_PARTS_N + tile_x), (x, y)),
         ((tile_lat, tile_lon2, tile_y * TILE_PARTS_N + tile_x2), (x2, y)),
