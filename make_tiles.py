@@ -5,7 +5,7 @@ import math
 import os
 import zlib
 import progressbar
-import pysqlite2.dbapi2 as sqlite
+import sqlite3 as sqlite
 import mpimap
 
 

@@ -1,5 +1,5 @@
 # coding: utf-8
-import pysqlite2.dbapi2 as sqlite
+import sqlite3 as sqlite
 from array import array
 import math
 import zlib
